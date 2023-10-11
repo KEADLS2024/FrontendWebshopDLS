@@ -19,7 +19,7 @@ export default [
         id: 3,
         name: "Keyboard",
         category: "Computer and Accessories",
-        image: "https://www.shutterstock.com/image-vector/vector-black-pc-keyboard-very-260nw-1026742981.jpg",
+        image: "https://www.cnet.com/a/img/resize/c2fb79b15d18f335e85fc4acd72910059cc9758b/hub/2021/08/20/453e37bf-61cb-4e16-ad90-fd822bdc390a/keychron-k3-mechanical-keyboard.jpg?auto=webp&fit=crop&height=900&width=1200",
         price: 749,
         stockQuantity: 20
     },
@@ -45,7 +45,7 @@ export default [
         category: "Computer and Accessories",
         image: "https://images.unsplash.com/photo-1626218174358-7769486c4b79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FtaW5nJTIwcGN8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
         price: 5000,
-        stockQuantity: 2
+        stockQuantity: 0
     },
     {
         id: 7,
