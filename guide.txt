@@ -1,0 +1,10 @@
+This is the guide for all the installs needed to make the application work.
+
+You need to have Node.js installed.
+Once you open the project for the first time, do this:
+The terminal commands:
+    npm install
+
+    chakra libraries:
+    npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
