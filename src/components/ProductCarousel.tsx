@@ -26,7 +26,7 @@ const ProductCarousel = () => {
 
 
   return (
-    <Box position={'relative'} height={'600px'} width={'900px'} overflow={'hidden'}>
+    <Box position={'relative'} borderRadius={'lg'} height={'600px'} width={'900px'} overflow={'hidden'}>
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"

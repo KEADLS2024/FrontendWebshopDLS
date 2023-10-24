@@ -21,7 +21,7 @@ function App() {
           </GridItem>
         </Show>
         <GridItem gridArea="main">
-          <Stack>
+          <Stack align="center">
             <ProductCarousel/>
             <ProductGrid/>
           </Stack>
