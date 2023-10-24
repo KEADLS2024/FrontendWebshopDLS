@@ -1,7 +1,8 @@
 import './App.css'
-import { Grid, GridItem, Show } from '@chakra-ui/react'
+import { Grid, GridItem, HStack, Show, Stack } from '@chakra-ui/react'
 import NavBar from './components/NavBar'
 import ProductGrid from './components/ProductGrid'
+import ProductCarousel from './components/ProductCarousel'
 
 function App() {
 
@@ -20,7 +21,10 @@ function App() {
           </GridItem>
         </Show>
         <GridItem gridArea="main">
-          <ProductGrid/>
+          <Stack>
+            <ProductCarousel/>
+            <ProductGrid/>
+          </Stack>
         </GridItem>
         
       </Grid>

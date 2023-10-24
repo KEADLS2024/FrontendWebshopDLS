@@ -8,3 +8,8 @@ The terminal commands:
     chakra libraries:
     npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
+    Carousel component:
+    npm i react-slick
+    npm install slick-carousel
+    npm i react-icons
+
