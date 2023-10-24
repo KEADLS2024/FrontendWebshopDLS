@@ -1,5 +1,5 @@
 import './App.css'
-import { Grid, GridItem, HStack, Show, Stack } from '@chakra-ui/react'
+import { Grid, GridItem, Show, Stack } from '@chakra-ui/react'
 import NavBar from './components/NavBar'
 import ProductGrid from './components/ProductGrid'
 import ProductCarousel from './components/ProductCarousel'
