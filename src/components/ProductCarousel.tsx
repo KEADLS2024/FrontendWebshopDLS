@@ -1,8 +1,9 @@
 import { Box, Text, Container, Stack, Heading, IconButton, useBreakpointValue } from "@chakra-ui/react";
 import Slider from "react-slick";
-import products from "../data/products";
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { useState } from "react";
+import useProducts from "../hooks/useProducts";
+
 
 
 const settings = {
@@ -20,6 +21,7 @@ const settings = {
 const ProductCarousel = () => {
 
     const [slider, setSlider] = useState<Slider | null>(null)
+    const { data: products} = useProducts();
 
     const top = useBreakpointValue({ base: '90%', md: '50%' })
     const side = useBreakpointValue({ base: '30%', md: '40px' })
@@ -74,7 +76,9 @@ const ProductCarousel = () => {
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
-            backgroundImage={`url(${card.image})`}>
+            backgroundColor="Background"
+            backgroundImage={`url(${card.img}), url(${"https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"})`}
+            >
             <Container size="container.lg" height="600px" position="relative">
               <Stack
                 spacing={6}

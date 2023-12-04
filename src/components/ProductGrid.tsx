@@ -1,9 +1,21 @@
-import useProductsStatic from '../hooks/useProductsStatic';
 import { SimpleGrid } from '@chakra-ui/react';
 import ProductCard from './ProductCard';
+import { ProductQuery } from '../App';
+import ProductCardContainer from './ProductCardContainer';
+import ProductCardSkeleton from './ProductCardSkeleton';
+import useProducts from '../hooks/useProducts';
 
-const ProductGrid = () => {
-    const { data: products, error } = useProductsStatic();
+interface Props {
+  productQuery: ProductQuery
+}
+
+const ProductGrid = ({productQuery}: Props) => {
+
+    const { data: products, error, isLoading } = useProducts();
+    const skeletons = [...Array(20).keys()];
+
+    const filteredProducts = products.filter(product => product.categoryId === productQuery.categoryID);
+
     return (
       <>
         {error && <p>{error}</p>}
@@ -18,8 +30,13 @@ const ProductGrid = () => {
           spacing={10}
           padding={10}
         >
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {isLoading && skeletons.map((skeleton) => <ProductCardContainer key={skeleton}>
+            <ProductCardSkeleton/>
+        </ProductCardContainer>)}
+          {filteredProducts.map((product) => (
+            <ProductCardContainer key={product.productId}>
+              <ProductCard  product={product} />
+            </ProductCardContainer>
           ))}
         </SimpleGrid>
       </>
