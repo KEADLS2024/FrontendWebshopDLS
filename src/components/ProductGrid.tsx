@@ -1,20 +1,22 @@
 import { SimpleGrid } from '@chakra-ui/react';
 import ProductCard from './ProductCard';
-import { ProductQuery } from '../App';
 import ProductCardContainer from './ProductCardContainer';
 import ProductCardSkeleton from './ProductCardSkeleton';
 import useProducts from '../hooks/useProducts';
+import { Link } from 'react-router-dom';
+import { ProductQuery } from '../pages/HomePage';
 
 interface Props {
-  productQuery: ProductQuery
+  productQuery: ProductQuery;
+  selectedCategoryID: number | null;
+  onSelectProduct: (productID: number) => void;
 }
 
-const ProductGrid = ({productQuery}: Props) => {
-
-    const { data: products, error, isLoading } = useProducts();
+const ProductGrid = ({selectedCategoryID, onSelectProduct}: Props) => {
+    const { data: products , error, isLoading } = useProducts();
     const skeletons = [...Array(20).keys()];
 
-    const filteredProducts = products.filter(product => product.categoryId === productQuery.categoryID);
+    const filteredProducts = products.filter(product => product.categoryId === selectedCategoryID);
 
     return (
       <>
@@ -34,8 +36,12 @@ const ProductGrid = ({productQuery}: Props) => {
             <ProductCardSkeleton/>
         </ProductCardContainer>)}
           {filteredProducts.map((product) => (
-            <ProductCardContainer key={product.productId}>
-              <ProductCard  product={product} />
+            <ProductCardContainer key={product.productID}>
+              <Link onMouseEnter={()=> onSelectProduct(product.productID)} onClick={()=> onSelectProduct(product.productID)}
+                    to={`/products/${product.productID}`}
+                    >
+                <ProductCard  product={product} />
+              </Link>
             </ProductCardContainer>
           ))}
         </SimpleGrid>

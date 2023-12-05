@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
+import { axiosInstance } from "../services/api-client";
 import { AxiosRequestConfig, CanceledError } from "axios";
 
 // interface Response<T>{
@@ -15,7 +15,7 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig,
         const controller = new AbortController();
 
         setIsLoading(true);
-        apiClient
+        axiosInstance
           .get<T[]>(endpoint, {
             signal: controller.signal,
             ...requestConfig,
