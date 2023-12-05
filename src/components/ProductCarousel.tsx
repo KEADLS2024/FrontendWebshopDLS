@@ -4,7 +4,13 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { useState } from "react";
 import useProducts from "../hooks/useProducts";
 
-
+function shuffleArray(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 const settings = {
     dots: true,
@@ -22,6 +28,8 @@ const ProductCarousel = () => {
 
     const [slider, setSlider] = useState<Slider | null>(null)
     const { data: products} = useProducts();
+
+    const shuffledProducts = shuffleArray(products);
 
     const top = useBreakpointValue({ base: '90%', md: '50%' })
     const side = useBreakpointValue({ base: '30%', md: '40px' })
@@ -68,7 +76,7 @@ const ProductCarousel = () => {
       </IconButton>
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {products.map((card, index) => (
+        {shuffledProducts.map((card, index) => (
           <Box
             key={index}
             height={'600px'}
