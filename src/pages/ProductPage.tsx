@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { Box, Button, Divider, GridItem, HStack, Heading, Image, SimpleGrid, Spinner, Stack, Text } from "@chakra-ui/react";
 import useProduct from "../hooks/useProduct";
 import StockIndicator from "../components/StockIndicator";
+import SingleProductCarousel from "../components/SingleProductCarousel";
 
 
 const ProductPage = () => {
@@ -30,6 +31,9 @@ const ProductPage = () => {
               <Stack paddingTop={"40px"} maxWidth={"150px"}>
                 <Button colorScheme="green">Add to Cart</Button>
               </Stack>
+          </GridItem>
+          <GridItem colSpan={{sm: 1, md: 2}} justifySelf={"center"}>
+            <SingleProductCarousel selectedCategoryID={product.categoryId}></SingleProductCarousel>
           </GridItem>
         
     </SimpleGrid>
