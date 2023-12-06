@@ -24,8 +24,8 @@ const HomePage = () => {
     return (
         <>
       <Grid templateAreas={{
-        base: `"main"`,
-        lg: `"aside main"`
+        sm: `"main"`,
+        md: `"aside main"`
       }}>
         <Show above="lg">
           <GridItem gridArea="aside" width={"210px"} height={"fit"} minHeight={"730px"} bg={"gray.700"}>
@@ -33,8 +33,8 @@ const HomePage = () => {
               selectedCategoryID={productQuery.categoryID}></CategoryList>
           </GridItem>
         </Show>
-        <GridItem gridArea="main">
-          <Stack align="center">
+        <GridItem gridArea="main" justifySelf={"left"}>
+          <Stack >
             {productQuery.categoryID === null && <ProductCarousel/>}
             <ProductGrid productQuery={productQuery} onSelectProduct={handleSelectProduct} selectedCategoryID={productQuery.categoryID}/>
           </Stack>
