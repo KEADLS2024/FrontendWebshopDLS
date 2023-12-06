@@ -1,7 +1,4 @@
-import { axiosInstance } from "../services/api-client";
 import Product from "../types/Product";
-import { useEffect, useState } from "react";
-import { AxiosRequestConfig, CanceledError } from "axios";
 import useData from "./useData";
 
 // const apiClient = new ApiClient<Product>("/sqlER/Product");
