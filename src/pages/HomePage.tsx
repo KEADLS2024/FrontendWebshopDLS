@@ -28,7 +28,7 @@ const HomePage = () => {
         lg: `"aside main"`
       }}>
         <Show above="lg">
-          <GridItem gridArea="aside" width={"200px"}>
+          <GridItem gridArea="aside" width={"210px"} height={"fit"} minHeight={"730px"} bg={"gray.700"}>
             <CategoryList onSelectCategory={handleSelectCategory}
               selectedCategoryID={productQuery.categoryID}></CategoryList>
           </GridItem>

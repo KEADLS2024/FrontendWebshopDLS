@@ -5,8 +5,8 @@ import useProduct from "../hooks/useProduct";
 
 const ProductPage = () => {
     const {productID} = useParams();
-    const productIDint = parseInt(productID!)
-  const { data: product, isLoading, error } = useProduct(productIDint); // "slug!" means that slug is never null
+    const productIDint = parseInt(productID!) // We need to make the string we get from using useParams() into an int
+  const { data: product, isLoading, error } = useProduct(productIDint!); // "productIDint!" means that productIDint is never null
 
 
   if (isLoading) return <Spinner />;
