@@ -16,6 +16,13 @@ const useProduct = (productID: number) => {
     return useData<Product>(endpoint, {}, [productID]);
   };
 
+  // const useProduct = (productID: number) => {
+  //   // Assuming the endpoint for fetching a single product by ID is like "/api/products/{productID}"
+
+  //   const {data} = useProducts()
+  //   return data.find((product) => product.productID === productID)
+  // };
+
 // const useProduct  = (productQuery: ProductQuery | undefined = undefined) => {
 //     const params = productQuery && productQuery.productID !== null ? { productID: productQuery.productID } : {};
 //     return useData<Product>("/sqlER/Product",{

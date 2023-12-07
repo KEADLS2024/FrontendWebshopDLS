@@ -1,4 +1,4 @@
-import { HStack, Image } from '@chakra-ui/react'
+import { HStack, Image, Text } from '@chakra-ui/react'
 import logo from '../assets/react.svg'
 import { Link } from 'react-router-dom'
 
@@ -9,6 +9,9 @@ const NavBar = () => {
         {/* Change this to something that makes more sense later */}
         <Link to={`/`}>
           <Image src={logo} boxSize="60px"></Image>
+        </Link>
+        <Link to={`admin`}>
+          <Text>Admin Panel</Text>
         </Link>
         <div>This is the NavBar</div>
     </HStack>

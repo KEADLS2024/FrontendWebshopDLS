@@ -10,7 +10,6 @@ const ProductPage = () => {
     const productIDint = parseInt(productID!) // We need to make the string we get from using useParams() into an int
   const { data: product, isLoading, error } = useProduct(productIDint!); // "productIDint!" means that productIDint is never null
 
-
   if (isLoading) return <Spinner />;
   if (error || !product) throw error;
 
