@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Heading, Input, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 
@@ -18,7 +18,9 @@ const DeleteProduct = () => {
             <form onSubmit={deleteData}>
                 <Box paddingTop={3}>
                     <Text>Product ID</Text>
-                    <input
+                    <Input
+                    width={"300px"}
+                    rounded={"9px"}
                     type="number"
                     placeholder="Enter the product ID"
                     required
