@@ -1,5 +1,6 @@
-import { Grid, Heading } from "@chakra-ui/react";
+import { Divider, Grid, Heading } from "@chakra-ui/react";
 import AddProduct from "../components/AddProduct";
+import DeleteProduct from "../components/DeleteProduct";
 
 
 const AdminPage = () => {
@@ -11,6 +12,8 @@ const AdminPage = () => {
       <Grid>
         <Heading justifySelf={"left"}>Admin Panel</Heading>
         <AddProduct></AddProduct>
+        <Divider></Divider>
+        <DeleteProduct></DeleteProduct>
       </Grid>
     </>
     );
