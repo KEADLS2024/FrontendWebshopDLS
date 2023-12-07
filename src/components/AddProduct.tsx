@@ -30,6 +30,7 @@ const AddProduct = () => {
                     <input 
                     type="text"
                     placeholder="Name of product"
+                    required
                     value={name}
                     onChange={(e)=> setName(e.target.value)}
                     />
@@ -38,6 +39,7 @@ const AddProduct = () => {
                     <Text>Description of the product</Text>
                     <textarea
                     placeholder="Description of the product here"
+                    required
                     value={description}
                     onChange={(e)=> setDescription(e.target.value)}
                     />
@@ -56,6 +58,7 @@ const AddProduct = () => {
                     <input 
                     type="number"
                     placeholder="The price for a single item"
+                    required
                     value={price}
                     onChange={(e)=> setPrice(e.target.valueAsNumber)}
                     />
@@ -65,6 +68,7 @@ const AddProduct = () => {
                     <input 
                     type="number"
                     placeholder="The stock quantity here"
+                    required
                     value={stockQuantity}
                     onChange={(e)=> setStockQuantity(e.target.valueAsNumber)}
                     />
@@ -74,6 +78,7 @@ const AddProduct = () => {
                     <input 
                     type="number"
                     placeholder="The category id"
+                    required
                     value={categoryId}
                     onChange={(e)=> setCategory(e.target.valueAsNumber)}
                     />
