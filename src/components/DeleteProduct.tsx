@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const DeleteProduct = () => {
     const [productID, setProductID] = useState(Number);
+    
 
     const deleteData = async () => {
         await axios.delete("https://localhost:7003/sqlER/Product/"+productID, {
@@ -28,7 +29,7 @@ const DeleteProduct = () => {
                     onChange={(e)=> setProductID(e.target.valueAsNumber)}
                     />
                 </Box>
-                <Box paddingTop={3}>
+                <Box paddingTop={3} paddingBottom={3}>
                     <Button type="submit" colorScheme="red">Delete the Product</Button>
                 </Box>
             </form>

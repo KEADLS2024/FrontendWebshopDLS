@@ -1,6 +1,7 @@
-import { Box, Button, HStack, Heading, Input, Text, Textarea } from "@chakra-ui/react";
+import { Box, Button, HStack, Heading, Input, Select, Spinner, Text, Textarea } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
+import useCategories from "../hooks/useCategories";
 
 const AddProduct = () => {
     const [name, setName] = useState("");
@@ -9,6 +10,11 @@ const AddProduct = () => {
   const [price, setPrice] = useState(Number);
   const [stockQuantity, setStockQuantity] = useState(Number);
   const [categoryId, setCategory] = useState(Number);
+
+  const { data: categories, error, isLoading } = useCategories();
+
+    if (error) return null;
+    if (isLoading) return <Spinner></Spinner>
 
     const sendData = async () => {
         await axios.post("https://localhost:7003/sqlER/Product", {
@@ -84,16 +90,21 @@ const AddProduct = () => {
                     />
                 </Box>
                 <Box paddingTop={3}>
-                    <Text>Category ID</Text>
-                    <Input 
-                    width={"300px"}
-                    rounded={"9px"}
-                    type="number"
-                    placeholder="Enter the category id here"
-                    required
-                    value={categoryId}
-                    onChange={(e)=> setCategory(e.target.valueAsNumber)}
-                    />
+                    <Text>Category</Text>
+                    <Select 
+                        width={"300px"}
+                        rounded={"9px"}
+                        placeholder="Select a category"
+                        value={categoryId}
+                        onChange={(e) => setCategory(Number(e.target.value))}
+                        required
+                    >
+                        {categories.map((category) => (
+                            <option key={category.categoryID} value={category.categoryID}>
+                                {category.name}
+                            </option>
+                        ))}
+                    </Select>
                 </Box>
                 <Box paddingTop={3}>
                     <Button type="submit" colorScheme="green">Add the Product</Button>
