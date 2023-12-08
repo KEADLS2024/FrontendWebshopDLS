@@ -1,6 +1,7 @@
 import { Divider, Grid, Heading } from "@chakra-ui/react";
 import AddProduct from "../components/AddProduct";
 import DeleteProduct from "../components/DeleteProduct";
+import UpdateProduct from "../components/UpdateProduct";
 
 
 const AdminPage = () => {
@@ -11,6 +12,8 @@ const AdminPage = () => {
         <AddProduct></AddProduct>
         <Divider></Divider>
         <DeleteProduct></DeleteProduct>
+        <Divider></Divider>
+        <UpdateProduct></UpdateProduct>
       </Grid>
     </>
     );

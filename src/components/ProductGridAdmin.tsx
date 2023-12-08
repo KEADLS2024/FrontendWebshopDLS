@@ -7,9 +7,10 @@ import useProducts from '../hooks/useProducts';
 interface Props {
   onSelectProductID: (productID: number) => void;
   onSelectProductName: (name: string) => void;
+  onSelectProduct?: (name: string, description: string, img: string, price: number, stockQuantity: number, categoryId: number) => void;
 }
 
-const ProductGridAdmin = ({onSelectProductID, onSelectProductName}: Props) => {
+const ProductGridAdmin = ({onSelectProductID, onSelectProductName, onSelectProduct}: Props) => {
     const { data: products , error, isLoading } = useProducts();
     const skeletons = [...Array(20).keys()];
 
@@ -33,7 +34,7 @@ const ProductGridAdmin = ({onSelectProductID, onSelectProductName}: Props) => {
         </ProductCardContainer>)}
           {products.map((product) => (
             <ProductCardContainer key={product.productID}>
-              <Box _hover={{ cursor: 'pointer' }} _active={{ transform: "scale(0.97)" }} onClick={() => {onSelectProductID(product.productID), onSelectProductName(product.name)}}                    >
+              <Box _hover={{ cursor: 'pointer' }} _active={{ transform: "scale(0.97)" }} onClick={() => {onSelectProductID(product.productID); onSelectProductName(product.name); if (onSelectProduct) {onSelectProduct(product.name,product.description,product.img,product.price,product.stockQuantity,product.categoryId)};}}                    >
                 <ProductCard  product={product} />
               </Box>
             </ProductCardContainer>
