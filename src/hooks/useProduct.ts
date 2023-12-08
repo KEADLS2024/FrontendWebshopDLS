@@ -13,7 +13,7 @@ const useProduct = (productID: number) => {
     // Assuming the endpoint for fetching a single product by ID is like "/api/products/{productID}"
     const endpoint = `/sqlER/Product/${productID}`;
   
-    return useData<Product>(endpoint, {}, [productID]);
+    return useData<Product>(endpoint, {}, [productID], true);
   };
 
   // const useProduct = (productID: number) => {
