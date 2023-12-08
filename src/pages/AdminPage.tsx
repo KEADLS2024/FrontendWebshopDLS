@@ -4,13 +4,10 @@ import DeleteProduct from "../components/DeleteProduct";
 
 
 const AdminPage = () => {
-    
-
-
     return (
         <>
       <Grid>
-        <Heading justifySelf={"left"}>Admin Panel</Heading>
+        <Heading as={"u"} padding={3} justifySelf={"left"}>Admin Panel</Heading>
         <AddProduct></AddProduct>
         <Divider></Divider>
         <DeleteProduct></DeleteProduct>
