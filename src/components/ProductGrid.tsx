@@ -8,15 +8,15 @@ import { ProductQuery } from '../pages/HomePage';
 
 interface Props {
   productQuery: ProductQuery;
-  selectedCategoryID: number | null;
-  onSelectProduct: (productID: number) => void;
+  selectedCategoryId: number | null;
+  onSelectProduct: (productId: number) => void;
 }
 
-const ProductGrid = ({selectedCategoryID, onSelectProduct}: Props) => {
+const ProductGrid = ({selectedCategoryId, onSelectProduct}: Props) => {
     const { data: products , error, isLoading } = useProducts();
     const skeletons = [...Array(20).keys()];
 
-    const filteredProducts = products.filter(product => product.categoryId === selectedCategoryID);
+    const filteredProducts = products.filter(product => product.categoryId === selectedCategoryId);
 
     return (
       <>
@@ -36,9 +36,9 @@ const ProductGrid = ({selectedCategoryID, onSelectProduct}: Props) => {
             <ProductCardSkeleton/>
         </ProductCardContainer>)}
           {filteredProducts.map((product) => (
-            <ProductCardContainer key={product.productID}>
-              <Link onMouseEnter={()=> onSelectProduct(product.productID)} onClick={()=> onSelectProduct(product.productID)}
-                    to={`/products/${product.productID}`}
+            <ProductCardContainer key={product.productId}>
+              <Link onMouseEnter={()=> onSelectProduct(product.productId)} onClick={()=> onSelectProduct(product.productId)}
+                    to={`/products/${product.productId}`}
                     >
                 <ProductCard  product={product} />
               </Link>

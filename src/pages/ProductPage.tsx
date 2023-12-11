@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Box, Button, Divider, GridItem, HStack, Heading, Image, SimpleGrid, Spinner, Stack, Text } from "@chakra-ui/react";
+import { Button, Divider, GridItem, HStack, Heading, Image, SimpleGrid, Spinner, Stack, Text } from "@chakra-ui/react";
 import useProduct from "../hooks/useProduct";
 import StockIndicator from "../components/StockIndicator";
 import SingleProductCarousel from "../components/SingleProductCarousel";

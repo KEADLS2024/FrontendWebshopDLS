@@ -5,15 +5,15 @@ import ProductGrid from "../components/ProductGrid";
 import ProductCarousel from "../components/ProductCarousel";
 
 export interface ProductQuery {
-    categoryID: number | null;
-    productID: number | null;
+    categoryId: number | null;
+    productId: number | null;
   }
 
 const HomePage = () => {
-    const [productQuery, setProductQuery] = useState<ProductQuery>({categoryID: null, productID: null})
+    const [productQuery, setProductQuery] = useState<ProductQuery>({categoryId: null, productId: null})
     
-    const handleSelectCategory = (categoryID: number) => {
-        setProductQuery(prevState => ({ ...prevState, categoryID }));
+    const handleSelectCategory = (categoryId: number) => {
+        setProductQuery(prevState => ({ ...prevState, categoryId }));
     };
 
     const handleSelectProduct = (productId: number) => {
@@ -30,13 +30,13 @@ const HomePage = () => {
         <Show above="lg">
           <GridItem gridArea="aside" width={"210px"} height={"fit"} minHeight={"730px"} bg={"gray.700"}>
             <CategoryList onSelectCategory={handleSelectCategory}
-              selectedCategoryID={productQuery.categoryID}></CategoryList>
+              selectedCategoryId={productQuery.categoryId}></CategoryList>
           </GridItem>
         </Show>
         <GridItem gridArea="main" justifySelf={"left"}>
           <Stack >
-            {productQuery.categoryID === null && <ProductCarousel/>}
-            <ProductGrid productQuery={productQuery} onSelectProduct={handleSelectProduct} selectedCategoryID={productQuery.categoryID}/>
+            {productQuery.categoryId === null && <ProductCarousel/>}
+            <ProductGrid productQuery={productQuery} onSelectProduct={handleSelectProduct} selectedCategoryId={productQuery.categoryId}/>
           </Stack>
         </GridItem>
         

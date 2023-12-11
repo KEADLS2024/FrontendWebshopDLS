@@ -3,11 +3,11 @@ import useCategories from "../hooks/useCategories";
 
 
 interface Props {
-    selectedCategoryID: number | null;
-    onSelectCategory: (categoryID: number) => void;
+    selectedCategoryId: number | null;
+    onSelectCategory: (categoryId: number) => void;
 }
 
-const CategoryList = ({selectedCategoryID, onSelectCategory}: Props) => {
+const CategoryList = ({selectedCategoryId, onSelectCategory}: Props) => {
   const { data: categories, error, isLoading } = useCategories();
   if (error) return null;
   if (isLoading) return <Spinner></Spinner>
@@ -16,13 +16,13 @@ const CategoryList = ({selectedCategoryID, onSelectCategory}: Props) => {
     <>
       <List>
           {categories.map((category) => (
-            <ListItem key={category.categoryID} padding={"5px"}>
+            <ListItem key={category.categoryId} padding={"5px"}>
                 <HStack>
-                  <Button onClick={()=> onSelectCategory(category.categoryID)}
+                  <Button onClick={()=> onSelectCategory(category.categoryId)}
                    variant={"link"}
-                   key={category.categoryID}
+                   key={category.categoryId}
                    fontSize={"lg"}
-                   colorScheme={selectedCategoryID === category.categoryID ? "red" : undefined}
+                   colorScheme={selectedCategoryId === category.categoryId ? "red" : undefined}
                    >
                     {category.name}
                     </Button>

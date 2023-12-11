@@ -2,7 +2,7 @@ import { ProductQuery } from '../pages/HomePage';
 import useData from './useData';
 
 export interface Product {
-  productID: number,
+  productId: number,
   categoryId: number,
   name: string,
   description: string,
@@ -12,8 +12,8 @@ export interface Product {
 }
 
 const useProducts = (productQuery: ProductQuery | undefined = undefined) => {
-  const params = productQuery && productQuery.categoryID !== null ? { categoryId: productQuery.categoryID } : {};
-  return useData<Product>("/sqlER/Product",{
+  const params = productQuery && productQuery.categoryId !== null ? { categoryId: productQuery.categoryId } : {};
+  return useData<Product>("/api/Products",{
     params: params,
     },
 [productQuery]);

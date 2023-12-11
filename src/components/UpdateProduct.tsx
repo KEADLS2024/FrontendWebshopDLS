@@ -6,7 +6,7 @@ import { useState } from "react";
 
 
 const UpdateProduct = () => {
-    const [productID, setProductID] = useState(Number);
+    const [productId, setProductID] = useState(Number);
     const [name, setName] = useState("");
     const [updateName, setUpdateName] = useState("");
     const [description, setDescription] = useState("");
@@ -30,8 +30,8 @@ const UpdateProduct = () => {
     if (isLoading) return <Spinner></Spinner>
 
     const updateData = async () => {
-        await axios.put("https://localhost:7003/sqlER/Product/"+productID, {
-            productID: productID,
+        await axios.put("http://localhost:5227/api/Products/"+productId, {
+            productId: productId,
             name: updateName,
             description: description,
             img: img,
@@ -123,7 +123,7 @@ const UpdateProduct = () => {
                         required
                     >
                         {categories.map((category) => (
-                            <option key={category.categoryID} value={category.categoryID}>
+                            <option key={category.categoryId} value={category.categoryId}>
                                 {category.name}
                             </option>
                         ))}

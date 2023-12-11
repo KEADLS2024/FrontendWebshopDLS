@@ -5,11 +5,11 @@ import ProductGridAdmin from "./ProductGridAdmin";
 
 
 const DeleteProduct = () => {
-    const [productID, setProductID] = useState(Number);
+    const [productId, setProductID] = useState(Number);
     const [productName, setProductName] = useState("")
 
     const deleteData = async () => {
-        await axios.delete("https://localhost:7003/sqlER/Product/"+productID, {
+        await axios.delete("http://localhost:5227/api/Products/"+productId, {
         });
       };
 

@@ -8,7 +8,7 @@ export interface FetchResponse<T> {
 
 export const axiosInstance = axios.create({
 // Change this to our api when we have it ready
-  baseURL: "https://localhost:7003",
+  baseURL: "http://localhost:5227",
   // params: {
   //   key: import.meta.env.VITE_API_KEY,
   // },

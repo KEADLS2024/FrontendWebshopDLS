@@ -17,7 +17,7 @@ const AddProduct = () => {
     if (isLoading) return <Spinner></Spinner>
 
     const sendData = async () => {
-        await axios.post("https://localhost:7003/sqlER/Product", {
+        await axios.post("http://localhost:5227/api/Products", {
             name: name,
             description: description,
             img: img,
@@ -100,7 +100,7 @@ const AddProduct = () => {
                         required
                     >
                         {categories.map((category) => (
-                            <option key={category.categoryID} value={category.categoryID}>
+                            <option key={category.categoryId} value={category.categoryId}>
                                 {category.name}
                             </option>
                         ))}
