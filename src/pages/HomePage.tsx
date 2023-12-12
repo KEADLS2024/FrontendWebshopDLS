@@ -35,7 +35,7 @@ const HomePage = () => {
         </Show>
         <GridItem gridArea="main" justifySelf={"left"}>
           <Stack >
-            {productQuery.categoryId === null && <ProductCarousel/>}
+            {productQuery.categoryId === null && <ProductCarousel onSelectProduct={handleSelectProduct}/>}
             <ProductGrid productQuery={productQuery} onSelectProduct={handleSelectProduct} selectedCategoryId={productQuery.categoryId}/>
           </Stack>
         </GridItem>

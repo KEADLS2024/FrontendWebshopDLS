@@ -3,15 +3,18 @@ import { Button, Divider, GridItem, HStack, Heading, Image, SimpleGrid, Spinner,
 import useProduct from "../hooks/useProduct";
 import StockIndicator from "../components/StockIndicator";
 import SingleProductCarousel from "../components/SingleProductCarousel";
+import { useState } from "react";
 
 
 const ProductPage = () => {
     const {productID} = useParams(); // We use useParams() to grap the productID from the URL
     const productIDint = parseInt(productID!) // We need to make the string we get from using useParams() into an int
   const { singleData: product, isLoading, error } = useProduct(productIDint!); // "productIDint!" means that productIDint is never null
+  const [productId, setProductId] = useState(Number)
 
   if (isLoading) return <Spinner />;
   if (error || !product) throw error;
+  productId;
 
   return (
     <SimpleGrid justifyItems={"center"} columns={{sm: 1, md: 2}} spacing={5}>
@@ -32,7 +35,7 @@ const ProductPage = () => {
               </Stack>
           </GridItem>
           <GridItem colSpan={{sm: 1, md: 2}} justifySelf={"center"}>
-            <SingleProductCarousel selectedCategoryID={product.categoryId}></SingleProductCarousel>
+            <SingleProductCarousel selectedCategoryID={product.categoryId} onSelectProduct={setProductId}></SingleProductCarousel>
           </GridItem>
         
     </SimpleGrid>
