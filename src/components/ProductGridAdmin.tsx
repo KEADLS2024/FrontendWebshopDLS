@@ -1,22 +1,19 @@
-import { SimpleGrid } from '@chakra-ui/react';
+import { Box, SimpleGrid } from '@chakra-ui/react';
 import ProductCard from './ProductCard';
 import ProductCardContainer from './ProductCardContainer';
 import ProductCardSkeleton from './ProductCardSkeleton';
 import useProducts from '../hooks/useProducts';
-import { Link } from 'react-router-dom';
-import { ProductQuery } from '../pages/HomePage';
 
 interface Props {
-  productQuery: ProductQuery;
-  selectedCategoryId: number | null;
-  onSelectProduct: (productId: number) => void;
+  onSelectProductID: (productId: number) => void;
+  onSelectProductName: (name: string) => void;
+  onSelectProduct?: (name: string, description: string, img: string, price: number, stockQuantity: number, categoryId: number) => void;
 }
 
-const ProductGrid = ({selectedCategoryId, onSelectProduct}: Props) => {
+const ProductGridAdmin = ({onSelectProductID, onSelectProductName, onSelectProduct}: Props) => {
     const { data: products , error, isLoading } = useProducts();
     const skeletons = [...Array(20).keys()];
 
-    const filteredProducts = products.filter(product => product.categoryId === selectedCategoryId);
 
     return (
       <>
@@ -35,13 +32,11 @@ const ProductGrid = ({selectedCategoryId, onSelectProduct}: Props) => {
           {isLoading && skeletons.map((skeleton) => <ProductCardContainer key={skeleton}>
             <ProductCardSkeleton/>
         </ProductCardContainer>)}
-          {filteredProducts.map((product) => (
+          {products.map((product) => (
             <ProductCardContainer key={product.productId}>
-              <Link onMouseEnter={()=> onSelectProduct(product.productId)} onClick={()=> onSelectProduct(product.productId)}
-                    to={`/products/${product.productId}`}
-                    >
+              <Box _hover={{ cursor: 'pointer' }} _active={{ transform: "scale(0.97)" }} onClick={() => {onSelectProductID(product.productId); onSelectProductName(product.name); if (onSelectProduct) {onSelectProduct(product.name,product.description,product.img,product.price,product.stockQuantity,product.categoryId)};}}                    >
                 <ProductCard  product={product} />
-              </Link>
+              </Box>
             </ProductCardContainer>
           ))}
         </SimpleGrid>
@@ -49,4 +44,4 @@ const ProductGrid = ({selectedCategoryId, onSelectProduct}: Props) => {
     )
   }
 
-export default ProductGrid
+export default ProductGridAdmin

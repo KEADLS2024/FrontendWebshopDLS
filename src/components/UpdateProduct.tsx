@@ -1,24 +1,38 @@
-import { Box, Button, HStack, Heading, Input, Select, Spinner, Text, Textarea } from "@chakra-ui/react";
+import { Box, Button, Heading, Input, Select, Spinner, Stack, Text, Textarea } from "@chakra-ui/react"
+import ProductGridAdmin from "./ProductGridAdmin"
 import axios from "axios";
-import { useState } from "react";
 import useCategories from "../hooks/useCategories";
+import { useState } from "react";
 
-const AddProduct = () => {
+
+const UpdateProduct = () => {
+    const [productId, setProductID] = useState(Number);
     const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [img, setImage] = useState("");
-  const [price, setPrice] = useState(Number);
-  const [stockQuantity, setStockQuantity] = useState(Number);
-  const [categoryId, setCategory] = useState(Number);
+    const [updateName, setUpdateName] = useState("");
+    const [description, setDescription] = useState("");
+    const [img, setImage] = useState("");
+    const [price, setPrice] = useState(Number);
+    const [stockQuantity, setStockQuantity] = useState(Number);
+    const [categoryId, setCategory] = useState(Number);
+    
+    const { data: categories, error, isLoading } = useCategories();
 
-  const { data: categories, error, isLoading } = useCategories();
+    const handleSelectProduct = (updateName: string, description: string, img: string, price: number, stockQuantity: number, categoryId: number) => {
+        setUpdateName(updateName)
+        setDescription(description);
+        setImage(img);
+        setPrice(price);
+        setStockQuantity(stockQuantity);
+        setCategory(categoryId);
+    };
 
     if (error) return null;
     if (isLoading) return <Spinner></Spinner>
 
-    const sendData = async () => {
-        await axios.post("http://localhost:5227/api/Products", {
-            name: name,
+    const updateData = async () => {
+        await axios.put("http://localhost:5227/api/Products/"+productId, {
+            productId: productId,
+            name: updateName,
             description: description,
             img: img,
             price: price,
@@ -26,11 +40,20 @@ const AddProduct = () => {
             categoryId: categoryId,
         });
       };
-    return (
-        <>
-        <Heading justifySelf={"center"}>Add a new product</Heading>
-        <HStack paddingBottom={3} justifyContent={"center"}>
-            <form onSubmit={sendData}>
+
+  return (
+    <>
+        <Heading padding={3} justifySelf={"center"}>Update a Product</Heading>
+        <Stack justifyContent={"center"}>
+            <Box>
+                <ProductGridAdmin onSelectProductID={setProductID} onSelectProductName={setName} onSelectProduct={handleSelectProduct}></ProductGridAdmin>
+            </Box>
+            <Box paddingLeft={3} paddingRight={3} alignSelf={"center"}>
+                <Text alignSelf={"center"} fontSize={"26px"}>This is your selected product:</Text>
+                <Text as={"u"} fontWeight={"bold"} fontStyle={"italic"} fontSize={"36px"}>{name}</Text>
+            </Box>
+            <Box alignSelf={"center"} maxWidth={"200px"}>
+            <form onSubmit={updateData}>
                 <Box paddingTop={3}>
                     <Text>Name of the product</Text>
                     <Input 
@@ -39,8 +62,8 @@ const AddProduct = () => {
                     type="text"
                     placeholder="Enter name of product here"
                     required
-                    value={name}
-                    onChange={(e)=> setName(e.target.value)}
+                    value={updateName}
+                    onChange={(e)=> setUpdateName(e.target.value)}
                     />
                 </Box>
                 <Box paddingTop={3}>
@@ -106,12 +129,14 @@ const AddProduct = () => {
                         ))}
                     </Select>
                 </Box>
-                <Box paddingTop={3}>
-                    <Button type="submit" colorScheme="green">Add the Product</Button>
+                <Box padding={3}>
+                    <Button type="submit" colorScheme="blue">Update the Product</Button>
                 </Box>
             </form>
-        </HStack>
-        </>
-    )
+            </Box>
+        </Stack>
+    </>
+  )
 }
-export default AddProduct
+
+export default UpdateProduct

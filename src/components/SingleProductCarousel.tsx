@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { useState } from "react";
 import useProducts from "../hooks/useProducts";
+import { Link } from "react-router-dom";
 
 function shuffleArray(array: any[]) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -13,6 +14,7 @@ function shuffleArray(array: any[]) {
 }
 interface Props {
     selectedCategoryID: number;
+    onSelectProduct: (productId: number) => void;
   }
 
 const settings = {
@@ -27,7 +29,7 @@ const settings = {
     slidesToScroll: 1,
   }
 
-const SingleProductCarousel = ({selectedCategoryID}: Props) => {
+const SingleProductCarousel = ({selectedCategoryID, onSelectProduct}: Props) => {
 
     const [slider, setSlider] = useState<Slider | null>(null)
     const { data: products} = useProducts();
@@ -82,34 +84,36 @@ const SingleProductCarousel = ({selectedCategoryID}: Props) => {
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {shuffledProducts.map((card, index) => (
-          <Box
-            key={index}
-            height={'600px'}
-            width={{sm:"400px"}}
-            position="relative"
-            backgroundPosition="center"
-            backgroundRepeat="no-repeat"
-            backgroundSize="cover"
-            backgroundColor="Background"
-            backgroundImage={`url(${card.img}), url(${"https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"})`}
-            >
-            <Container  height={{sm:"300px" ,md:"600px"}} width={{sm:"400px", md:"900px"}} position="relative">
-              <Stack
-                spacing={6}
-                w={'full'}
-                maxW={'md'}
-                position="absolute"
-                top={{sm:"30%", md:"10%"}}
-                >
-                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }} color="green">
-                  {card.name}
-                </Heading>
-                <Text fontSize={{ base: 'md', lg: 'lg' }} color="green">
-                  {card.price} kr.
-                </Text>
-              </Stack>
-            </Container>
-          </Box>
+            <Box
+              key={index}
+              height={'600px'}
+              width={{sm:"400px"}}
+              position="relative"
+              backgroundPosition="center"
+              backgroundRepeat="no-repeat"
+              backgroundSize="cover"
+              backgroundColor="Background"
+              backgroundImage={`url(${card.img}), url(${"https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"})`}
+              >
+              <Link to={`/products/${card.productId}`} onClick={()=> onSelectProduct(card.productId)}>
+                <Container  height={{sm:"300px" ,md:"600px"}} width={{sm:"400px", md:"900px"}} position="relative">
+                  <Stack
+                    spacing={6}
+                    w={'full'}
+                    maxW={'md'}
+                    position="absolute"
+                    top={{sm:"30%", md:"10%"}}
+                    >
+                    <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }} color="green">
+                      {card.name}
+                    </Heading>
+                    <Text fontSize={{ base: 'md', lg: 'lg' }} color="green">
+                      {card.price} kr.
+                    </Text>
+                  </Stack>
+                </Container>
+              </Link>
+            </Box>
         ))}
       </Slider>
     </Box>

@@ -9,11 +9,11 @@ import useData from "./useData";
 //     queryFn: () => apiClient.get(productID),
 //   });
 
-const useProduct = (productID: number) => {
+const useProduct = (productId: number) => {
     // Assuming the endpoint for fetching a single product by ID is like "/api/products/{productID}"
-    const endpoint = `/sqlER/Product/${productID}`;
+    const endpoint = `/api/Products/${productId}`;
   
-    return useData<Product>(endpoint, {}, [productID]);
+    return useData<Product>(endpoint, {}, [productId], true);
   };
 
   // const useProduct = (productID: number) => {

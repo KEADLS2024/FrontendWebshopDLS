@@ -1,11 +1,11 @@
 import useData from "./useData";
 
 export interface Category {
-    categoryID : number,
+    categoryId : number,
     name : string
 }
 
 
-const useCategories = () => useData<Category>("/api/Category");
+const useCategories = () => useData<Category>("/api/Categories");
 
 export default useCategories

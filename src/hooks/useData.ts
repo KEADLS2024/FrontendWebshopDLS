@@ -6,8 +6,9 @@ import { AxiosRequestConfig, CanceledError } from "axios";
 // }
 
 const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig,
-    dependencies?: any[] ) => {
+    dependencies?: any[], isSingleItem: boolean = false ) => {
     const [data, setData] = useState<T[]>([]);
+    const [singleData, setSingleData] = useState<T>(<T>{});
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -15,7 +16,24 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig,
         const controller = new AbortController();
 
         setIsLoading(true);
-        axiosInstance
+        if (isSingleItem==true) {
+          axiosInstance
+            .get<T>(endpoint, {
+              signal: controller.signal,
+              ...requestConfig,
+            })
+            .then((response)=> {
+              setSingleData(response.data);
+              setIsLoading(false);
+              console.log("Check this single!"+response)
+            })
+            .catch((error) => {
+              if (!(error instanceof CanceledError)) setError(error.message)
+            });
+          return () => controller.abort();
+        }
+        else{
+          axiosInstance
           .get<T[]>(endpoint, {
             signal: controller.signal,
             ...requestConfig,
@@ -29,10 +47,11 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig,
           if (!(error instanceof CanceledError)) setError(error.message)
         });
         return () => controller.abort();
+        }
       }, dependencies ? [...dependencies] : []
       );
 
-      return {data,error,isLoading}
+      return {data,singleData,error,isLoading}
 };
 
 export default useData;

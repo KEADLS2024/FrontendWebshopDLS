@@ -19,13 +19,15 @@ const AdminPage = () => {
     // Render the admin components if the user is an admin
     return (
         <>
-            <Grid>
-                <Heading justifySelf={"left"}>Admin Panel</Heading>
-                <AddProduct></AddProduct>
-                <Divider></Divider>
-                <DeleteProduct></DeleteProduct>
-            </Grid>
-        </>
+      <Grid>
+        <Heading as={"u"} padding={3} justifySelf={"left"}>Admin Panel</Heading>
+        <AddProduct></AddProduct>
+        <Divider></Divider>
+        <DeleteProduct></DeleteProduct>
+        <Divider></Divider>
+        <UpdateProduct></UpdateProduct>
+      </Grid>
+    </>
     );
 };
 
