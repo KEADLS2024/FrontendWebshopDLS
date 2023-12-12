@@ -4,6 +4,7 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { useState } from "react";
 import useProducts from "../hooks/useProducts";
 import { Link } from "react-router-dom";
+import { formatCurrency } from "../utilities/formatCurrency";
 
 function shuffleArray(array: any[]) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -108,7 +109,7 @@ const SingleProductCarousel = ({selectedCategoryID, onSelectProduct}: Props) => 
                       {card.name}
                     </Heading>
                     <Text fontSize={{ base: 'md', lg: 'lg' }} color="green">
-                      {card.price} kr.
+                      {formatCurrency(card.price)}
                     </Text>
                   </Stack>
                 </Container>
