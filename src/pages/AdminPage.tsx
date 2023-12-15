@@ -1,34 +1,35 @@
+// AdminPage.tsx
 import React from 'react';
 import { Divider, Grid, Heading } from "@chakra-ui/react";
-import { useAuth } from '../contexts/AuthContext'; // Import useAuth hook
+import { useAuth } from '../contexts/AuthContext';
+import { getUserRoleFromToken } from '../services/jwtUtils'; // Ensure this utility function is implemented correctly
+
 import AddProduct from "../components/AddProduct";
 import DeleteProduct from "../components/DeleteProduct";
+import UpdateProduct from '../components/UpdateProduct';
 
-const AdminPage = () => {
-    const { authData } = useAuth(); // Use the useAuth hook to access auth data
+const AdminPage: React.FC = () => {
+  const { token } = useAuth(); // Retrieve the token from AuthContext
 
-    // Check if the user is authenticated and has the 'Administrator' role
-    // Replace 'Administrator' with the actual role name you have in your auth data
-    const isAdmin = authData && authData.roles.includes('Administrator');
+  const userRole = token ? getUserRoleFromToken(token) : '';
+  const isAdmin = userRole === 'Administrator'; // Check for 'Administrator' role
 
-    // If not admin, render a message or redirect
-    if (!isAdmin) {
-        return <div>You do not have access to this page.</div>;
-    }
+  if (!isAdmin) {
+    return <div>You do not have access to this page.</div>;
+  }
 
-    // Render the admin components if the user is an admin
-    return (
-        <>
+  return (
+    <>
       <Grid>
-        <Heading as={"u"} padding={3} justifySelf={"left"}>Admin Panel</Heading>
-        <AddProduct></AddProduct>
-        <Divider></Divider>
-        <DeleteProduct></DeleteProduct>
-        <Divider></Divider>
-        <UpdateProduct></UpdateProduct>
+        <Heading as="u" padding={3} justifySelf="left">Admin Panel</Heading>
+        <AddProduct />
+        <Divider />
+        <DeleteProduct />
+        <Divider />
+        <UpdateProduct />
       </Grid>
     </>
-    );
+  );
 };
 
 export default AdminPage;

@@ -18,7 +18,10 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    
+    /* Add @types/jwt-decode to types array */
+    //"types": ["@types/node", "@types/jwt-decode"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

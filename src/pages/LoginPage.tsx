@@ -1,54 +1,58 @@
+// LoginPage.js
 import React, { useState } from 'react';
-import ApiClient, { LoginCredentials, LoginResponse } from '../services/api-client'; // Import ApiClient and LoginCredentials
+import { Button, Input, Alert, AlertIcon } from '@chakra-ui/react';
+import { useAuth } from '../contexts/AuthContext';
 
-/**
- * LoginPage component handles user login.
- */
-const LoginPage = () => {
-  // State variables to store username and password
+const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
 
-  // Create an instance of the ApiClient with the login endpoint
-  const apiClient = new ApiClient<LoginResponse>('/usercredentials'); // Update the endpoint as needed
-
-  /**
-   * Handles the login process when the form is submitted.
-   */
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent the default form submission
     try {
-      const credentials: LoginCredentials = { username, password };
-      const token = await apiClient.login(credentials);
-      // Handle successful login and redirection to the next page
+      const response = await fetch('http://localhost:5227/api/UserCredentials/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        login(data.token); // Store the token
+      } else {
+        setError('Invalid username or password.');
+      }
     } catch (error) {
-      // Handle login error
-      console.error('Login failed:', error);
+      setError('An error occurred while trying to log in.');
     }
   };
 
   return (
     <div>
-      <h1>Login Page</h1>
+      {error && (
+        <Alert status="error">
+          <AlertIcon />
+          {error}
+        </Alert>
+      )}
       <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
+        <Input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button colorScheme="blue" type="submit">Login</Button>
       </form>
     </div>
   );

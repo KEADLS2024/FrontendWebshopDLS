@@ -5,16 +5,15 @@ export interface FetchResponse<T> {
   next: string | null;
   results: T[];
 }
+
 export const axiosInstance = axios.create({
-// Change this to our api when we have it ready
   baseURL: "http://localhost:5227",
-  // params: {
-  //   key: import.meta.env.VITE_API_KEY,
-  // },
+  // params: { key: import.meta.env.VITE_API_KEY },
 });
 
 export interface LoginResponse {
   token: string;
+  role: string; // Add role to the login response
 }
 
 export interface LoginCredentials {
@@ -35,16 +34,13 @@ class ApiClient<T> {
   get = (id: string | number) =>
     axiosInstance.get<T>(`${this.endpoint}/${id}`).then(res => res.data);
 
-  //  login function to the ApiClient class
   login = (credentials: LoginCredentials) =>
     axiosInstance.post<LoginResponse>(`/usercredentials/login`, credentials).then(res => {
-      // Here we handle the response after logging in
-      const { token } = res.data;
-      localStorage.setItem('token', token); // Save the token in local storage
-      return token; // Return the token for use in your application
+      const { token, role } = res.data; // Now also includes the role
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role); // Save the role in local storage
+      return { token, role }; // Return both token and role
     });
-
- 
 }
 
 export default ApiClient;
