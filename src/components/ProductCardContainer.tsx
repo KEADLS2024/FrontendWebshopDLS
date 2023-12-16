@@ -7,7 +7,12 @@ interface Props {
 
 const ProductCardContainer = ({children}: Props) => {
   return (
-    <Box borderRadius={10} overflow="hidden" width="100%">
+    <Box 
+    border="1px"
+    borderColor="black"
+    boxShadow="dark-lg"
+    _hover={{transform: "scale(1.05)", transition: "transform 0.1s ease-in"}}
+    borderRadius={10} overflow="hidden" width="100%">
         {children}
     </Box>
   )

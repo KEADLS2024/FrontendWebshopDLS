@@ -44,7 +44,7 @@ const SingleProductCarousel = ({selectedCategoryID, onSelectProduct}: Props) => 
 
 
   return (
-    <Box position={'relative'} borderRadius={'lg'} height={'300px'} maxHeight={{sm:"300px", md:"600px"}} width={{sm:"400px",md:'700px'}} maxWidth={{sm:"400" ,md:"900px"}} overflow={'hidden'}>
+    <Box boxShadow={"dark-lg"} position={'relative'} borderRadius={'lg'} height={'300px'} maxHeight={{sm:"300px", md:"600px"}} width={{sm:"400px",md:'700px'}} maxWidth={{sm:"400" ,md:"900px"}} overflow={'hidden'}>
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"

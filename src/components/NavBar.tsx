@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/react.svg';
 import { useAuth } from '../contexts/AuthContext';
 import { useShoppingCart } from '../context/ShoppingCartContext';
+import ColorModeSwitch from './ColorModeSwitch';
 
 const NavBar: React.FC = () => {
   const { token, role, logout } = useAuth();
@@ -64,6 +65,7 @@ const NavBar: React.FC = () => {
           </Link>
         </HStack>
       )}
+      <ColorModeSwitch/>
     </HStack>
   );
 };

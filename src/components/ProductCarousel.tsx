@@ -40,7 +40,7 @@ const ProductCarousel = ({onSelectProduct}: Props) => {
 
 
   return (
-    <Box position={'relative'} borderRadius={'lg'} height={'600px'} width={'900px'} overflow={'hidden'}>
+    <Box marginTop={"40px"} boxShadow={"dark-lg"} position={'relative'} borderRadius={'lg'} height={'600px'} width={'900px'} overflow={'hidden'}>
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
