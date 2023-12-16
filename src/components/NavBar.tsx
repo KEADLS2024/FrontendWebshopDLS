@@ -1,4 +1,3 @@
-// NavBar.tsx
 import React from 'react';
 import { HStack, Image, Text, Button } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +5,7 @@ import logo from '../assets/react.svg';
 import { useAuth } from '../contexts/AuthContext';
 
 const NavBar: React.FC = () => {
-  const { token, logout } = useAuth();
+  const { token, role, logout } = useAuth(); // Include role in useAuth
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -21,9 +20,11 @@ const NavBar: React.FC = () => {
       </Link>
       {token ? (
         <>
-          <Link to="/admin">
-            <Text color="white" fontSize="lg">Admin Panel</Text>
-          </Link>
+          {role === 'Administrator' && ( // Conditionally render Admin Panel link
+            <Link to="/admin">
+              <Text color="white" fontSize="lg">Admin Panel</Text>
+            </Link>
+          )}
           <Button colorScheme="red" onClick={handleLogout}>Logout</Button>
         </>
       ) : (

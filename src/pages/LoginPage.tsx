@@ -10,7 +10,7 @@ const LoginPage: React.FC = () => {
   const { login } = useAuth();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
     try {
       const response = await fetch('http://localhost:5227/api/UserCredentials/login', {
         method: 'POST',
@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        login(data.token); // Store the token
+        login(data.token, data.role); // Store the token and role
       } else {
         setError('Invalid username or password.');
       }
