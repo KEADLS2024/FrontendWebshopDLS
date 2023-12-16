@@ -44,7 +44,7 @@ const SingleProductCarousel = ({selectedCategoryID, onSelectProduct}: Props) => 
 
 
   return (
-    <Box boxShadow={"dark-lg"} position={'relative'} borderRadius={'lg'} height={'300px'} maxHeight={{sm:"300px", md:"600px"}} width={{sm:"400px",md:'700px'}} maxWidth={{sm:"400" ,md:"900px"}} overflow={'hidden'}>
+    <Box marginBottom={"30px"} boxShadow={"dark-lg"} position={'relative'} borderRadius={'lg'} height={'300px'} maxHeight={{sm:"300px", md:"600px"}} width={{sm:"400px",md:'700px'}} maxWidth={{sm:"400" ,md:"900px"}} overflow={'hidden'}>
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
@@ -94,7 +94,7 @@ const SingleProductCarousel = ({selectedCategoryID, onSelectProduct}: Props) => 
               backgroundRepeat="no-repeat"
               backgroundSize="cover"
               backgroundColor="Background"
-              backgroundImage={`url(${card.img}), url(${"https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"})`}
+              backgroundImage={`url(${card.img})`}
               >
               <Link to={`/products/${card.productId}`} onClick={()=> onSelectProduct(card.productId)}>
                 <Container  height={{sm:"300px" ,md:"600px"}} width={{sm:"400px", md:"900px"}} position="relative">

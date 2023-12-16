@@ -16,8 +16,10 @@ const AddProduct = () => {
     if (error) return null;
     if (isLoading) return <Spinner></Spinner>
 
-    const sendData = async () => {
-        await axios.post("http://localhost:5227/api/Products", {
+    const sendData = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        try {
+            await axios.post("http://localhost:5227/api/Products", {
             name: name,
             description: description,
             img: img,
@@ -25,6 +27,9 @@ const AddProduct = () => {
             stockQuantity: stockQuantity,
             categoryId: categoryId,
         });
+        } catch (error){
+
+        }
       };
     return (
         <>
