@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
-import { Button, Divider, GridItem, HStack, Heading, Image, SimpleGrid, Spinner, Stack, Text } from "@chakra-ui/react";
+import { Divider, GridItem, HStack, Heading, Image, SimpleGrid, Spinner, Stack, Text } from "@chakra-ui/react";
 import useProduct from "../hooks/useProduct";
 import StockIndicator from "../components/StockIndicator";
 import SingleProductCarousel from "../components/SingleProductCarousel";
 import { useState } from "react";
+import { formatCurrency } from "../utilities/formatCurrency";
+import AddToCart from "../components/AddToCart";
 
 
 const ProductPage = () => {
@@ -26,12 +28,12 @@ const ProductPage = () => {
               <Heading fontSize={"5xl"}>{product.name}</Heading>
               <Text maxWidth={"700px"} fontSize={"3xl"}>{product.description}</Text>
               <Divider  borderWidth={"1px"} backgroundColor={"red"}></Divider>
-              <Text align={"center"} fontStyle={"italic"} fontSize={"4xl"} paddingTop={"2px"} >{product.price} kr.</Text>
+              <Text align={"center"} fontStyle={"italic"} fontSize={"4xl"} paddingTop={"2px"} >{formatCurrency(product.price)}</Text>
               <HStack justifyContent={"left"}>
                 <StockIndicator stock={product.stockQuantity}></StockIndicator>
               </HStack>
               <Stack paddingTop={"40px"} maxWidth={"150px"}>
-                <Button colorScheme="green">Add to Cart</Button>
+                <AddToCart id={productIDint}></AddToCart>
               </Stack>
           </GridItem>
           <GridItem colSpan={{sm: 1, md: 2}} justifySelf={"center"}>
