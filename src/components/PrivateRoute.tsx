@@ -1,29 +1,17 @@
-// PrivateRoute.tsx
-
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
-import { getUserRoleFromToken } from '../services/jwtUtils'; // Import the function
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 interface PrivateRouteProps {
   element: React.ReactNode;
-  path: string;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ element, path }) => {
-  const token = localStorage.getItem('token'); // Retrieve the token from local storage
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ element }) => {
+  const { token, role } = useAuth();
 
-  // Provide a default value (empty string) if 'token' is null
-  const userRole = token ? getUserRoleFromToken(token) : '';
+  const isAdmin = token && role === 'Administrator';
 
-  // Check if the user has the 'Administrator' role
-  const isAdmin = userRole === 'Administrator';
-
-  return (
-    <Route
-      path={path}
-      element={isAdmin ? element : <Navigate to="/login" />}
-    />
-  );
+  return isAdmin ? <>{element}</> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

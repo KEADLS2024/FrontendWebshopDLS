@@ -1,18 +1,15 @@
-// AdminPage.tsx
 import React from 'react';
 import { Divider, Grid, Heading } from "@chakra-ui/react";
 import { useAuth } from '../contexts/AuthContext';
-import { getUserRoleFromToken } from '../services/jwtUtils'; // Ensure this utility function is implemented correctly
 
 import AddProduct from "../components/AddProduct";
 import DeleteProduct from "../components/DeleteProduct";
 import UpdateProduct from '../components/UpdateProduct';
 
 const AdminPage: React.FC = () => {
-  const { token } = useAuth(); // Retrieve the token from AuthContext
+  const { token, role } = useAuth();
 
-  const userRole = token ? getUserRoleFromToken(token) : '';
-  const isAdmin = userRole === 'Administrator'; // Check for 'Administrator' role
+  const isAdmin = token && role === 'Administrator';
 
   if (!isAdmin) {
     return <div>You do not have access to this page.</div>;
