@@ -8,15 +8,9 @@ const DeleteProduct = () => {
     const [productId, setProductID] = useState(Number);
     const [productName, setProductName] = useState("")
 
-    const deleteData = async (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-        try {
-            await axios.delete("http://localhost:5227/api/Products/"+productId, {
+    const deleteData = async () => {
+        await axios.delete("http://localhost:5227/api/Products/"+productId, {
         });
-        } catch {
-
-        }
-        
       };
 
     return (

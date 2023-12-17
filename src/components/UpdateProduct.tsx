@@ -29,8 +29,7 @@ const UpdateProduct = () => {
     if (error) return null;
     if (isLoading) return <Spinner></Spinner>
 
-    const updateData = async (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
+    const updateData = async () => {
         await axios.put("http://localhost:5227/api/Products/"+productId, {
             productId: productId,
             name: updateName,
