@@ -1,4 +1,4 @@
-const { Builder, By, Key, until, Select } = require('selenium-webdriver');
+const { Builder, By, Key, until } = require('selenium-webdriver');
 
 async function UserTest() {
     let driver = await new Builder().forBrowser('chrome').build();
@@ -52,7 +52,7 @@ async function AdminAddProductTest() {
         await driver.get('http://localhost:5173/');
 
         await driver.findElement(By.id('login')).click();
-        await driver.sleep(1000) //We only use sleep to demonstrate, it's otherwise not ideal because it slows down the tests
+        await driver.sleep(1000)
 
         await driver.wait(until.urlIs('http://localhost:5173/login'), 10000);
 

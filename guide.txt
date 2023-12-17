@@ -19,3 +19,9 @@ The terminal commands:
     npm install @tanstack/react-query-devtools@4.28
 
     npm i axios 
+
+To run tests:
+    You need to install webdriver for Chrome
+
+    Terminal command:
+        node test.cjs
