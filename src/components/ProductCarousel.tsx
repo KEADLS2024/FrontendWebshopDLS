@@ -81,7 +81,7 @@ const ProductCarousel = ({onSelectProduct}: Props) => {
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {shuffledProducts.map((card, index) => (
-          <Link to={`/products/${card.productId}`} onClick={()=> onSelectProduct(card.productId)}>
+          <Link key={index} to={`/products/${card.productId}`} onClick={()=> onSelectProduct(card.productId)}>
             <Box
               key={index}
               height={'600px'}
