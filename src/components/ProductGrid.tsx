@@ -37,7 +37,7 @@ const ProductGrid = ({selectedCategoryId, onSelectProduct}: Props) => {
         </ProductCardContainer>)}
           {filteredProducts.map((product) => (
             <ProductCardContainer key={product.productId}>
-              <Link onMouseEnter={()=> onSelectProduct(product.productId)} onClick={()=> onSelectProduct(product.productId)}
+              <Link id={product.name} onMouseEnter={()=> onSelectProduct(product.productId)} onClick={()=> onSelectProduct(product.productId)}
                     to={`/products/${product.productId}`}
                     >
                 <ProductCard  product={product} />

@@ -17,7 +17,7 @@ const AddToCart = ({id}: Props) => {
   return (
     <div style={{marginTop:"auto"}}>
           {quantity === 0 ? (
-            <Button colorScheme='green' borderRadius={10} width={"200px"} onClick={() => increaseCartQuantity(id)}>
+            <Button id='addToCart' colorScheme='green' borderRadius={10} width={"200px"} onClick={() => increaseCartQuantity(id)}>
               + Add To Cart
             </Button>
           ) : (

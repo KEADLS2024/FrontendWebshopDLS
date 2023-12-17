@@ -18,7 +18,7 @@ const CategoryList = ({selectedCategoryId, onSelectCategory}: Props) => {
           {categories.map((category) => (
             <ListItem key={category.categoryId} padding={"5px"}>
                 <HStack>
-                  <Button onClick={()=> onSelectCategory(category.categoryId)}
+                  <Button id={category.name} onClick={()=> onSelectCategory(category.categoryId)}
                    variant={"link"}
                    key={category.categoryId}
                    fontSize={"lg"}

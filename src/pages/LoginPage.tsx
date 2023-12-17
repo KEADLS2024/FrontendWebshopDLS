@@ -46,6 +46,7 @@ const LoginPage: React.FC = () => {
         )}
         <form onSubmit={handleLogin}>
           <Input
+            id='username'
             marginTop={"20px"}
             type="text"
             placeholder="Username"
@@ -53,14 +54,15 @@ const LoginPage: React.FC = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-          marginTop={"20px"}
+            id='password'
+            marginTop={"20px"}
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <Stack marginTop={"20px"}  align={'center'}>
-            <Button width={"150px"} colorScheme="blue" type="submit">Login</Button>
+            <Button id='loginbutton' width={"150px"} colorScheme="blue" type="submit">Login</Button>
           </Stack>
         </form>
       </Stack>

@@ -30,7 +30,7 @@ const NavBar: React.FC = () => {
               </Link>
             </HStack>
           )}
-          <Button onClick={openCart} style={{width: "3rem", height: "3rem", marginRight: "30px", marginLeft: "auto"}} variant="outline" borderRadius={50} position={"relative"}>
+          <Button id='cart' onClick={openCart} style={{width: "3rem", height: "3rem", marginRight: "30px", marginLeft: "auto"}} variant="outline" borderRadius={50} position={"relative"}>
             {/* Shopping Cart Icon and Quantity */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,12 +56,12 @@ const NavBar: React.FC = () => {
               {cartQuantity}
             </div>
           </Button>
-          <Button colorScheme="red" onClick={handleLogout}>Logout</Button>
+          <Button id='logout' colorScheme="red" onClick={handleLogout}>Logout</Button>
         </>
       ) : (
         <HStack marginStart={'auto'}>
           <Link to="/login">
-            <Button colorScheme="teal" variant="outline">Login</Button>
+            <Button id='login' colorScheme="teal" variant="outline">Login</Button>
           </Link>
         </HStack>
       )}

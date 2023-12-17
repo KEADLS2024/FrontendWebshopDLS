@@ -15,7 +15,7 @@ const CartItem = ({id,quantity}: Props) => {
   if (item == null) return null
 
   return (
-    <HStack>
+    <HStack id={item.name+'Cart'}>
         <Image style={{width: "125px", height: "75", objectFit: "cover", marginBottom: "10px"}} src={item.img} fallbackSrc='https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'></Image>
         <Box marginRight={"auto"}>
             <Box>
@@ -33,7 +33,7 @@ const CartItem = ({id,quantity}: Props) => {
         <Box>
             {formatCurrency(item.price * quantity)}
         </Box>
-        <Button variant={"outline"}  colorScheme='red' size={'sm'} onClick={() => removeFromCart(item.productId)}>X</Button>
+        <Button id='removeInCart' variant={"outline"}  colorScheme='red' size={'sm'} onClick={() => removeFromCart(item.productId)}>X</Button>
     </HStack>
   )
 }

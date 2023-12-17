@@ -15,7 +15,7 @@ const ShoppingCart = ({isOpen}: Props) => {
     <Drawer isOpen={isOpen} onClose={closeCart} placement='right'>
         <DrawerOverlay/>
         <DrawerContent minWidth={"420px"}>
-            <DrawerCloseButton mt={2} />
+            <DrawerCloseButton id='closeCart' mt={2} />
             <DrawerHeader>Shopping Cart</DrawerHeader>
             <DrawerBody>
                 <Grid>
