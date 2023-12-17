@@ -14,15 +14,20 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
-  const [role, setRole] = useState<string | null>(null);
+  // Initialize the state from localStorage
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+  const [role, setRole] = useState<string | null>(localStorage.getItem('role'));
 
   const login = (newToken: string, newRole: string) => {
+    localStorage.setItem('token', newToken); // Save the token in localStorage
+    localStorage.setItem('role', newRole); // Save the role in localStorage
     setToken(newToken);
     setRole(newRole);
   };
 
   const logout = () => {
+    localStorage.removeItem('token'); // Remove the token from localStorage
+    localStorage.removeItem('role'); // Remove the role from localStorage
     setToken(null);
     setRole(null);
   };
