@@ -12,9 +12,9 @@ const ProductCard = ({product}: Props) => {
   return (
     <>
         <Card borderRadius={10} overflow="hidden">
-            <Image height={300} objectFit={"fill"} src={product.img} fallbackSrc={placeholderProduct}></Image>
-            <CardBody>
-                <Heading>{product.name}</Heading>
+            <Image height={280} objectFit={"fill"} src={product.img} fallbackSrc={placeholderProduct}></Image>
+            <CardBody minHeight={"155px"}>
+                <Heading fontSize={"26px"}>{product.name}</Heading>
                 <Text>{formatCurrency(product.price)}</Text>
                 <HStack justifyContent="right">
                     <StockIndicator stock={product.stockQuantity}></StockIndicator>
