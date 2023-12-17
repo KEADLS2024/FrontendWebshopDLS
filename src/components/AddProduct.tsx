@@ -39,6 +39,7 @@ const AddProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Name of the product</Text>
                     <Input 
+                    id="nameNewProduct"
                     width={{base: "300px",sm:"300px", md:"300px"}}
                     rounded={"9px"}
                     type="text"
@@ -51,6 +52,7 @@ const AddProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Description of the product</Text>
                     <Textarea
+                    id="descriptionNewProduct"
                     width={"300px"}
                     rounded={"9px"}
                     placeholder="Enter description of the product here"
@@ -62,6 +64,7 @@ const AddProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Link to image of product</Text>
                     <Input 
+                    id="imgNewProduct"
                     width={"300px"}
                     rounded={"9px"}
                     type="text"
@@ -73,6 +76,7 @@ const AddProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Price of the product</Text>
                     <Input 
+                    id="priceNewProduct"
                     width={"300px"}
                     rounded={"9px"}
                     type="number"
@@ -85,6 +89,7 @@ const AddProduct = () => {
                 <Box paddingTop={3}>
                     <Text>The available stock for the product</Text>
                     <Input 
+                    id="stockNewProduct"
                     width={"300px"}
                     rounded={"9px"}
                     type="number"
@@ -97,6 +102,7 @@ const AddProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Category</Text>
                     <Select 
+                        id="categoriesNewProduct"
                         width={"300px"}
                         rounded={"9px"}
                         placeholder="Select a category"
@@ -105,14 +111,14 @@ const AddProduct = () => {
                         required
                     >
                         {categories.map((category) => (
-                            <option key={category.categoryId} value={category.categoryId}>
+                            <option id={category.name} key={category.categoryId} value={category.categoryId}>
                                 {category.name}
                             </option>
                         ))}
                     </Select>
                 </Box>
                 <Box paddingTop={3}>
-                    <Button type="submit" colorScheme="green">Add the Product</Button>
+                    <Button id="addNewProduct" type="submit" colorScheme="green">Add the Product</Button>
                 </Box>
             </form>
         </HStack>

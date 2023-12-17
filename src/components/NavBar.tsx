@@ -18,14 +18,14 @@ const NavBar: React.FC = () => {
 
   return (
     <HStack bg="gray.900" px="4" py="2" alignItems="center">
-      <Link to="/">
+      <Link id='home' to="/">
         <Image src={logo} boxSize="50px" />
       </Link>
       {token ? (
         <>
           {role === 'Administrator' && (
             <HStack marginEnd={'auto'}>
-              <Link to="/admin">
+              <Link id='adminPanel' to="/admin">
                 <Text color="white" fontSize="lg">Admin Panel</Text>
               </Link>
             </HStack>
