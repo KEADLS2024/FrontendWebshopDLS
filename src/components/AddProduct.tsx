@@ -1,9 +1,12 @@
+// Importerer nødvendige komponenter fra Chakra UI, axios for HTTP-anmodninger og useState hook fra React
 import { Box, Button, HStack, Heading, Input, Select, Spinner, Text, Textarea } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 import useCategories from "../hooks/useCategories";
 
+// Definerer 'AddProduct' komponenten, som er en funktionel React komponent.
 const AddProduct = () => {
+    // State hooks for produktdetaljer
     const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImage] = useState("");
@@ -11,6 +14,7 @@ const AddProduct = () => {
   const [stockQuantity, setStockQuantity] = useState(Number);
   const [categoryId, setCategory] = useState(Number);
 
+  // Bruger 'useCategories' hook til at hente kategoridata, herunder håndtering af loading og fejl.
   const { data: categories, error, isLoading } = useCategories();
 
     if (error) return null;
@@ -26,6 +30,7 @@ const AddProduct = () => {
             categoryId: categoryId,
         });
       };
+      // Returnerer JSX for tilføjelsesformen til et nyt produkt.
     return (
         <>
         <Heading justifySelf={"center"}>Add a new product</Heading>

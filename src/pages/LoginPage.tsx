@@ -1,19 +1,26 @@
-// LoginPage.js
+// Importerer React, useState hook fra React, forskellige komponenter fra Chakra UI, samt brugerdefinerede hooks.
 import React, { useState } from 'react';
 import { Button, Input, Alert, AlertIcon, Grid, Stack, Heading } from '@chakra-ui/react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+// Definerer 'LoginPage' komponenten, som er en funktionel React komponent.
 const LoginPage: React.FC = () => {
+  // State hooks for brugernavn, adgangskode og eventuelle fejlmeddelelser.
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  // Bruger 'useAuth' hook for at få adgang til login funktionen.
   const { login } = useAuth();
+  // Bruger 'useNavigate' hook for programmatisk navigation.
   const navigate = useNavigate();
 
+  // Håndterer logind handlingen.
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      // Sender en POST anmodning til API'et for at logge ind.
       const response = await fetch('http://localhost:5227/api/UserCredentials/login', {
         method: 'POST',
         headers: {
@@ -22,18 +29,20 @@ const LoginPage: React.FC = () => {
         body: JSON.stringify({ username, password }),
       });
 
+      // Håndterer svar fra API'et.
       if (response.ok) {
         const data = await response.json();
-        login(data.token, data.role); // Store the token and role
-        navigate('/');
+        login(data.token, data.role); // Gemmer token og rolle.
+        navigate('/'); // Navigerer til startsiden.
       } else {
-        setError('Invalid username or password.');
+        setError('Invalid username or password.'); // Viser fejl ved ugyldigt login.
       }
     } catch (error) {
-      setError('An error occurred while trying to log in.');
+      setError('An error occurred while trying to log in.'); // Håndterer netværksfejl eller serverfejl.
     }
   };
 
+  // Returnerer JSX for login siden.
   return (
     <Grid justifyContent={'center'}>
       <Stack paddingTop={"100px"} alignContent={'center'} maxWidth={"300px"}>

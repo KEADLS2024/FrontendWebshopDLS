@@ -1,37 +1,45 @@
+// Importerer React og nødvendige hooks fra React biblioteket.
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+// Definerer et interface 'AuthContextType' til at beskrive strukturen af autentifikationskonteksten.
 interface AuthContextType {
-  token: string | null;
-  role: string | null;
-  login: (token: string, role: string) => void;
-  logout: () => void;
+  token: string | null; // JWT-token for brugeren.
+  role: string | null; // Brugerens rolle.
+  login: (token: string, role: string) => void; // Funktion til at logge ind.
+  logout: () => void; // Funktion til at logge ud.
 }
 
+// Definerer et interface 'AuthProviderProps' for at specificere egenskaber for AuthProvider komponenten.
 interface AuthProviderProps {
-  children: ReactNode;
+  children: ReactNode; // React børnekomponenter.
 }
 
+// Opretter en React-kontekst 'AuthContext' med en valgfri 'AuthContextType'.
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Definerer 'AuthProvider' komponenten til at levere autentifikationskontekst til dens children.
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  // Initialize the state from localStorage
+  // Initialiserer token og rolle fra localStorage.
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [role, setRole] = useState<string | null>(localStorage.getItem('role'));
 
+  // 'login' funktionen til at opdatere token og rolle i både localStorage og state.
   const login = (newToken: string, newRole: string) => {
-    localStorage.setItem('token', newToken); // Save the token in localStorage
-    localStorage.setItem('role', newRole); // Save the role in localStorage
+    localStorage.setItem('token', newToken);
+    localStorage.setItem('role', newRole);
     setToken(newToken);
     setRole(newRole);
   };
 
+  // 'logout' funktionen til at fjerne token og rolle fra localStorage og state.
   const logout = () => {
-    localStorage.removeItem('token'); // Remove the token from localStorage
-    localStorage.removeItem('role'); // Remove the role from localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     setToken(null);
     setRole(null);
   };
 
+  // Returnerer AuthProvider komponenten med den tilsvarende kontekst.
   return (
     <AuthContext.Provider value={{ token, role, login, logout }}>
       {children}
@@ -39,6 +47,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 };
 
+// Definerer en brugerdefineret hook 'useAuth' til at tilgå AuthContext.
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {

@@ -4,8 +4,9 @@ import axios from "axios";
 import useCategories from "../hooks/useCategories";
 import { useState } from "react";
 
-
+// Definerer 'UpdateProduct' komponenten, som er en funktionel React komponent.
 const UpdateProduct = () => {
+    // State hooks for at håndtere og opdatere produktinformation.
     const [productId, setProductID] = useState(Number);
     const [name, setName] = useState("");
     const [updateName, setUpdateName] = useState("");
@@ -14,9 +15,11 @@ const UpdateProduct = () => {
     const [price, setPrice] = useState(Number);
     const [stockQuantity, setStockQuantity] = useState(Number);
     const [categoryId, setCategory] = useState(Number);
-    
+
+    // Bruger 'useCategories' hook til at hente kategoridata, herunder håndtering af loading og fejl.
     const { data: categories, error, isLoading } = useCategories();
 
+    // Funktion til at håndtere valg af et specifikt produkt til opdatering.
     const handleSelectProduct = (updateName: string, description: string, img: string, price: number, stockQuantity: number, categoryId: number) => {
         setUpdateName(updateName)
         setDescription(description);
@@ -26,9 +29,10 @@ const UpdateProduct = () => {
         setCategory(categoryId);
     };
 
-    if (error) return null;
-    if (isLoading) return <Spinner></Spinner>
+    if (error) return null; // Returnerer ingenting hvis der er en fejl.
+    if (isLoading) return <Spinner></Spinner> // Viser en spinner, mens data hentes.
 
+    // Funktion til at sende opdaterede produktdata til serveren.
     const updateData = async () => {
         await axios.put("http://localhost:5227/api/Products/"+productId, {
             productId: productId,
@@ -41,6 +45,7 @@ const UpdateProduct = () => {
         });
       };
 
+ // Returnerer JSX for opdateringsformen af et produkt.
   return (
     <>
         <Heading padding={3} justifySelf={"center"}>Update a Product</Heading>

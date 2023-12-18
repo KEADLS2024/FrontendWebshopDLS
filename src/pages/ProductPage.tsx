@@ -7,17 +7,24 @@ import { useState } from "react";
 import { formatCurrency } from "../utilities/formatCurrency";
 import AddToCart from "../components/AddToCart";
 
-
+// Definerer 'ProductPage' komponenten, som er en funktionel React komponent.
 const ProductPage = () => {
-    const {productID} = useParams(); // We use useParams() to grap the productID from the URL
+  // Bruger 'useParams' hook for at hente produktID fra URL'en.
+    const {productID} = useParams(); 
+  // Konverterer produktID fra string til integer.
     const productIDint = parseInt(productID!) // We need to make the string we get from using useParams() into an int
+
+    // Bruger 'useProduct' hook for at hente produktinformationen.
   const { singleData: product, isLoading, error } = useProduct(productIDint!); // "productIDint!" means that productIDint is never null
   const [productId, setProductId] = useState(Number)
 
+  // Viser et load icon, mens data hentes.
   if (isLoading) return <Spinner />;
+  // thrower en fejl, hvis der opstår en fejl, eller hvis produktet ikke findes.
   if (error || !product) throw error;
   productId;
 
+  // Returnerer JSX for produktets side.
   return (
     <SimpleGrid justifyItems={"center"} columns={{sm: 1, md: 2}} spacing={5}>
         
