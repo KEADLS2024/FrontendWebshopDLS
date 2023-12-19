@@ -1,25 +1,37 @@
-// Importerer Box komponenten fra Chakra UI, NavBar komponenten, Outlet fra react-router-dom, og ShoppingCartProvider.
-import { Box } from "@chakra-ui/react";
-import NavBar from "../components/NavBar";
-import { Outlet } from "react-router-dom";
-import { ShoppingCartProvider } from "../context/ShoppingCartContext";
+// Importing necessary React components and hooks.
+import { Box } from "@chakra-ui/react"; // Box from Chakra UI for consistent styling and layout.
+import NavBar from "../components/NavBar"; // NavBar component for navigation.
+import { Outlet } from "react-router-dom"; // Outlet from react-router-dom for rendering matched route components.
+import { ShoppingCartProvider } from "../context/ShoppingCartContext"; // Context provider for shopping cart functionality.
 
-// Definerer 'Layout' komponenten, som er en funktionel React komponent.
+/**
+ * The Layout component acts as the central framework for the application's UI.
+ * It encapsulates other components and provides consistent layout and context.
+ * 
+ * @returns {JSX.Element} The Layout component structure.
+ */
 const Layout = () => {
-  // Returnerer JSX for layoutet af applikationen.
+  // The JSX returned by this functional component defines the structure and layout for the application.
   return (
+    
     <>
-    {/* Indkapsler hele applikationen i ShoppingCartProvider for at give adgang til indkøbsvognens kontekst. */}
-    <ShoppingCartProvider>
-      {/* NavBar komponenten vises øverst på alle sider. */}
-      <NavBar />
-      <Box >
-        {/* Outlet komponenten bruges til at vise indholdet af de aktuelle ruter. */}
-        <Outlet />
-      </Box>
-    </ShoppingCartProvider>
+      {/* ShoppingCartProvider provides a shopping cart context to all nested components. */}
+      <ShoppingCartProvider>
+        {/* NavBar is a reusable component that is displayed at the top of every page for consistent navigation. */}
+        <NavBar />
+        {/* Box serves as a container with Chakra UI styling that wraps the Outlet component. */}
+        <Box>
+          
+          {/* Outlet er et kraftfuldt værktøj til at bygge enkelt-sides applikationer (SPAs) med react-router-dom. 
+          Det muliggør definitionen af et enkelt, konsekvent layout (Layout.tsx), hvor hovedindholdet kan ændre sig dynamisk baseret på brugerens navigation. */}
+          
+          {/* This enables the SPA behavior, where different "pages" are rendered within the Layout's structure without a full page reload. */}
+          <Outlet />
+        </Box>
+      </ShoppingCartProvider>
     </>
   );
 };
 
+// Exporting Layout to be used as the root layout component in the application.
 export default Layout;

@@ -9,9 +9,10 @@ export interface FetchResponse<T> {
 }
 
 // Opretter en axios-instans med en basis-URL for alle fremtidige HTTP-anmodninger.
+// This instance will be used for all HTTP requests
 export const axiosInstance = axios.create({
   baseURL: "http://localhost:5227",
-  // Yderligere konfigurationsparametre kan tilføjes her.
+  
 });
 
 // Definerer et interface 'LoginResponse' for at repræsentere strukturen af en login-svar.
@@ -34,7 +35,7 @@ class ApiClient<T> {
   constructor(endpoint: string) {
     this.endpoint = endpoint;
   }
-
+  // !Important! The use of .then means that once the data is retrieved (asynchronously), the function within .then() will execute to process the response.
   // Funktion til at hente alle data fra en bestemt endpoint.
   getAll = (config?: AxiosRequestConfig) =>
     axiosInstance.get<FetchResponse<T>>(this.endpoint, config).then(res => res.data);
@@ -43,7 +44,7 @@ class ApiClient<T> {
   get = (id: string | number) =>
     axiosInstance.get<T>(`${this.endpoint}/${id}`).then(res => res.data);
 
-  // Funktion til at håndtere login med brugeroplysninger og returnere login-svar.
+ //Login-funktionen sender POST-anmodning med brugeroplysninger via axios, gemmer token og rolle i localStorage og returnerer dem.
   login = (credentials: LoginCredentials) =>
     axiosInstance.post<LoginResponse>(`/usercredentials/login`, credentials).then(res => {
       const { token, role } = res.data; // Gemmer både token og rolle

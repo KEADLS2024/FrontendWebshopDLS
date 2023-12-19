@@ -9,10 +9,10 @@ import UpdateProduct from '../components/UpdateProduct';
 
 // Definerer 'AdminPage' komponenten, som er en React funktionel komponent. React.FC: This stands for "React Functional Component." It's a TypeScript type annotation that describes the AdminPage as a functional component in React. 
 const AdminPage: React.FC = () => {
-  // Bruger 'useAuth' hook for at få adgang til autentifikationsoplysninger.
+  // Bruger 'useAuth' (fra authcontext) for at få adgang til autentifikationsoplysninger.
   const { token, role } = useAuth();
 
-  // Tjekker om brugeren har administratorrettigheder.
+  // Tjekker om brugeren har administratorrettigheder. tjekker om rolen er samme string
   const isAdmin = token && role === 'Administrator';
 
   // Returnerer en adgangsbesked, hvis brugeren ikke er administrator.

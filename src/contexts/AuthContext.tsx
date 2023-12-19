@@ -1,4 +1,3 @@
-// Importerer React og nødvendige hooks fra React biblioteket.
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 // Definerer et interface 'AuthContextType' til at beskrive strukturen af autentifikationskonteksten.
@@ -23,6 +22,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [role, setRole] = useState<string | null>(localStorage.getItem('role'));
 
+  // Denne komponent styrer autentificeringskonteksten for sine underkomponenter. 
+  // Den indlæser token og rolle fra localStorage og giver en login-funktion, der opdaterer disse tilstande.
+  
   // 'login' funktionen til at opdatere token og rolle i både localStorage og state.
   const login = (newToken: string, newRole: string) => {
     localStorage.setItem('token', newToken);
