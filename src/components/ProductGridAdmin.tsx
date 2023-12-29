@@ -10,10 +10,11 @@ interface Props {
   onSelectProductID: (productId: number) => void;
   onSelectProductName: (name: string) => void;
   onSelectProduct?: (name: string, description: string, img: string, price: number, stockQuantity: number, categoryId: number) => void;
+  idPrefix: string;
 }
 
 // Definerer 'ProductGridAdmin' komponenten, som er en funktionel React komponent.
-const ProductGridAdmin = ({onSelectProductID, onSelectProductName, onSelectProduct}: Props) => {
+const ProductGridAdmin = ({onSelectProductID, onSelectProductName, onSelectProduct, idPrefix}: Props) => {
     // Bruger 'useProducts' hook til at hente produktdata, herunder håndtering af loading og fejl.
     const { data: products, error, isLoading } = useProducts();
     const skeletons = [...Array(20).keys()];
@@ -39,7 +40,7 @@ const ProductGridAdmin = ({onSelectProductID, onSelectProductName, onSelectProdu
           ))}
           {products.map((product) => (
             <ProductCardContainer key={product.productId}>
-              <Box _hover={{ cursor: 'pointer' }} _active={{ transform: "scale(0.97)" }} 
+              <Box id={`${idPrefix}-${product.name}`} _hover={{ cursor: 'pointer' }} _active={{ transform: "scale(0.97)" }} 
                    onClick={() => {
                      onSelectProductID(product.productId);
                      onSelectProductName(product.name);

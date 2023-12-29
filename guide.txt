@@ -24,4 +24,6 @@ To run tests:
     You need to install webdriver for Chrome
 
     Terminal command:
-        node test.cjs
+        npm test
+
+npm install --save-dev mocha chai

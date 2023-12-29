@@ -35,7 +35,7 @@ const DeleteProduct = () => {
             </Box> */}
             <Box>
                 {/* ProductGridAdmin komponenten bruges til at vælge et produkt til sletning. */}
-                <ProductGridAdmin onSelectProductID={setProductID} onSelectProductName={setProductName}></ProductGridAdmin>
+                <ProductGridAdmin idPrefix="delete" onSelectProductID={setProductID} onSelectProductName={setProductName}></ProductGridAdmin>
             </Box>
             <Box paddingLeft={3} paddingRight={3} alignSelf={"center"}>
                 <Text alignSelf={"center"} fontSize={"26px"}>This is your selected product:</Text>

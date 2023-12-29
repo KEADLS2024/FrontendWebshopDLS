@@ -29,13 +29,13 @@ const ProductPage = () => {
     <SimpleGrid justifyItems={"center"} columns={{sm: 1, md: 2}} spacing={5}>
         
           <GridItem justifySelf={{sm:"center", md:"right"}} padding={3}>
-            <Image src={product.img} fallbackSrc="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"></Image>
+            <Image maxHeight={"500px"} src={product.img} fallbackSrc="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"></Image>
           </GridItem>
           <GridItem justifySelf={{sm:"center", md:"left"}} padding={3} minHeight={"400px"}>
-              <Heading fontSize={"5xl"}>{product.name}</Heading>
+              <Heading id="productName" fontSize={"5xl"}>{product.name}</Heading>
               <Text maxWidth={"700px"} fontSize={"3xl"}>{product.description}</Text>
               <Divider  borderWidth={"1px"} backgroundColor={"red"}></Divider>
-              <Text align={"center"} fontStyle={"italic"} fontSize={"4xl"} paddingTop={"2px"} >{formatCurrency(product.price)}</Text>
+              <Text id="productPrice" align={"center"} fontStyle={"italic"} fontSize={"4xl"} paddingTop={"2px"} >{formatCurrency(product.price)}</Text>
               <HStack justifyContent={"left"}>
                 <StockIndicator stock={product.stockQuantity}></StockIndicator>
               </HStack>

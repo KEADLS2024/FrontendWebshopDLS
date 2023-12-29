@@ -51,7 +51,7 @@ const UpdateProduct = () => {
         <Heading padding={3} justifySelf={"center"}>Update a Product</Heading>
         <Stack justifyContent={"center"}>
             <Box>
-                <ProductGridAdmin onSelectProductID={setProductID} onSelectProductName={setName} onSelectProduct={handleSelectProduct}></ProductGridAdmin>
+                <ProductGridAdmin idPrefix="update" onSelectProductID={setProductID} onSelectProductName={setName} onSelectProduct={handleSelectProduct}></ProductGridAdmin>
             </Box>
             <Box paddingLeft={3} paddingRight={3} alignSelf={"center"}>
                 <Text alignSelf={"center"} fontSize={"26px"}>This is your selected product:</Text>
@@ -62,6 +62,7 @@ const UpdateProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Name of the product</Text>
                     <Input 
+                    id="nameUpdate"
                     width={{base: "300px",sm:"300px", md:"300px"}}
                     rounded={"9px"}
                     type="text"
@@ -74,6 +75,7 @@ const UpdateProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Description of the product</Text>
                     <Textarea
+                    id="descriptionUpdate"
                     width={"300px"}
                     rounded={"9px"}
                     placeholder="Enter description of the product here"
@@ -85,6 +87,7 @@ const UpdateProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Link to image of product</Text>
                     <Input 
+                    id="imgUpdate"
                     width={"300px"}
                     rounded={"9px"}
                     type="text"
@@ -96,6 +99,7 @@ const UpdateProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Price of the product</Text>
                     <Input 
+                    id="priceUpdate"
                     width={"300px"}
                     rounded={"9px"}
                     type="number"
@@ -108,6 +112,7 @@ const UpdateProduct = () => {
                 <Box paddingTop={3}>
                     <Text>The available stock for the product</Text>
                     <Input 
+                    id="stockUpdate"
                     width={"300px"}
                     rounded={"9px"}
                     type="number"
@@ -120,6 +125,7 @@ const UpdateProduct = () => {
                 <Box paddingTop={3}>
                     <Text>Category</Text>
                     <Select 
+                        id="categoriesUpdate"
                         width={"300px"}
                         rounded={"9px"}
                         placeholder="Select a category"
@@ -128,14 +134,14 @@ const UpdateProduct = () => {
                         required
                     >
                         {categories.map((category) => (
-                            <option key={category.categoryId} value={category.categoryId}>
+                            <option id={category.name} key={category.categoryId} value={category.categoryId}>
                                 {category.name}
                             </option>
                         ))}
                     </Select>
                 </Box>
                 <Box padding={3}>
-                    <Button type="submit" colorScheme="blue">Update the Product</Button>
+                    <Button id="updateProduct" type="submit" colorScheme="blue">Update the Product</Button>
                 </Box>
             </form>
             </Box>
