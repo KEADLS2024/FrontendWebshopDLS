@@ -115,6 +115,7 @@ describe('Webshop Tests', function(){
 
         let productName = await driver.findElement(By.id('productName')).getText()
         expect(productName).to.equal('Selenium PC');
+        await driver.sleep(1000)
         
         await driver.findElement(By.id('logout')).click();
         await driver.sleep(2000)
